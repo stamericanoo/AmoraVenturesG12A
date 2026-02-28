@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMORA VENTURES | 12 A Industrial Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --panel: #fcfcfc;
+            --text: #1a1a1a;
+            --dim: #666666;
+            --maroon: #800000;
+            --gold: #b8860b;
+            --border: #eeeeee;
+        }
+
+        * { scroll-behavior: smooth; box-sizing: border-box; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* FIXED SIDE NAV DOTS */
+        .side-nav { position: fixed; right: 25px; top: 50%; transform: translateY(-50%); z-index: 2000; display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.9); padding: 20px 10px; border-radius: 50px; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .dot { width: 10px; height: 10px; background: #ddd; border-radius: 50%; transition: 0.3s; cursor: pointer; display: block; }
+        .dot.active { background: var(--maroon); transform: scale(1.6); }
+
+        /* STICKY TOP DASHBOARD */
+        .top-dash { position: sticky; top: 0; z-index: 1000; background: white; display: grid; grid-template-columns: repeat(4, 1fr); padding: 15px 10%; border-bottom: 2px solid var(--maroon); box-shadow: 0 10px 30px rgba(0,0,0,0.02); text-align: center; }
+        .dash-item h4 { font-size: 0.65rem; color: var(--dim); margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .dash-item .val { font-size: 1.6rem; font-weight: 900; color: var(--maroon); }
+
+        /* HERO */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(245,245,245,0.5) 100%), url('https://images.unsplash.com/photo-1541976590-713941681591?q=80&w=2070&auto=format&fit=crop'); background-size: cover; text-align: center; }
+        .hero h1 { font-family: 'Montserrat'; font-size: 6rem; font-weight: 900; margin: 0; line-height: 0.8; letter-spacing: -4px; }
+        .hero h1 span { color: var(--maroon); }
+        .hero p { font-size: 1.2rem; letter-spacing: 15px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-top: 30px; }
+
+        /* SECTIONS */
+        section { padding: 120px 10%; border-bottom: 1px solid var(--border); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .section-header h2 { font-family: 'Montserrat'; font-size: 3rem; font-weight: 900; text-transform: uppercase; margin: 0; color: var(--maroon); }
+        .section-header div { width: 100px; height: 6px; background: var(--gold); margin-top: 15px; }
+
+        .card { background: var(--panel); padding: 50px; border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 10px 40px rgba(0,0,0,0.02); margin-top: 40px; width: 100%; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+
+        /* EFFICIENCY SELECTOR */
+        .selector-box { background: #f9f9f9; padding: 40px; border-radius: 20px; border: 2px solid var(--maroon); text-align: center; margin-top: 50px; }
+        .tier-btn { padding: 15px 30px; border-radius: 8px; border: none; cursor: pointer; font-weight: 800; margin: 10px; transition: 0.3s; text-transform: uppercase; }
+        .btn-basic { background: #666; color: white; }
+        .btn-std { background: #059669; color: white; }
+        .btn-premium { background: #7c3aed; color: white; }
+
+        /* TABLES */
+        table { width: 100%; border-collapse: collapse; margin-top: 30px; background: white; border-radius: 10px; overflow: hidden; }
+        th { text-align: left; padding: 20px; background: #f4f4f4; color: var(--maroon); font-size: 0.8rem; text-transform: uppercase; }
+        td { padding: 20px; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+
+        .formula { font-family: 'JetBrains Mono'; background: #1a1a1a; color: #4ade80; padding: 30px; border-radius: 10px; margin: 20px 0; font-size: 1rem; border-left: 5px solid var(--maroon); }
+
+        footer { background: #fff; padding: 100px 10%; border-top: 5px solid var(--maroon); text-align: center; }
+        .meta { display: flex; justify-content: space-between; border-top: 1px solid #eee; padding-top: 40px; margin-top: 40px; color: var(--dim); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="side-nav">
+        <a href="#hero" class="dot active"></a>
+        <a href="#intro" class="dot"></a>
+        <a href="#mass" class="dot"></a>
+        <a href="#energy" class="dot"></a>
+        <a href="#selector" class="dot"></a>
+        <a href="#reaction" class="dot"></a>
+        <a href="#equipment" class="dot"></a>
+        <a href="#utility" class="dot"></a>
+        <a href="#economy" class="dot"></a>
+        <a href="#safety" class="dot"></a>
+    </nav>
+
+    <div class="top-dash">
+        <div class="dash-item"><h4>Target Production</h4><div class="val">1,000 <small>MTPD</small></div></div>
+        <div class="dash-item"><h4>Plant Yield</h4><div class="val" id="yield-val">99.4%</div></div>
+        <div class="dash-item"><h4>12 A</h4><div class="val" style="font-size:1.2rem">Aisha • Keysha • Jovita</div></div>
+        <div class="dash-item"><h4>Est. ROI</h4><div class="val" id="roi-val">31.2%</div></div>
+    </div>
+
+    <section class="hero" id="hero">
+        <h1>AMORA<br><span>VENTURES</span></h1>
+        <p>Industrial Excellence</p>
+    </section>
+
+    <section id="intro">
+        <div class="section-header"><h2>01. Executive Summary</h2><div></div></div>
+        <div class="card">
+            <p style="font-size:1.5rem; line-height:1.8; color:var(--dim);">This project presents the comprehensive engineering design of a 1,000 MTPD Sulfuric Acid facility. By leveraging DCDA technology and high-performance catalysis, our team in <b>12 A</b> achieved a benchmark efficiency of 99.4% with maximized energy recovery.</p>
+        </div>
+    </section>
+
+    <section id="mass">
+        <div class="section-header"><h2>02. Mass Balance</h2><div></div></div>
+        <div class="card">
+                        <table>
+                <thead><tr><th>Stream Component</th><th>Input (kg/h)</th><th>Output (kg/h)</th><th>State</th></tr></thead>
+                <tbody>
+                    <tr><td>Molten Sulfur (99.9%)</td><td>7,541.67</td><td>0.00</td><td>Liquid</td></tr>
+                    <tr><td>Filtered Air ($O_2/N_2$)</td><td>62,450.00</td><td>55,200.00</td><td>Gas</td></tr>
+                    <tr><td>Process Water</td><td>4,120.00</td><td>0.00</td><td>Liquid</td></tr>
+                    <tr style="font-weight:900; color:var(--maroon);"><td>Asam Sulfat (98%)</td><td>0.00</td><td>41,666.67</td><td>Liquid</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="energy">
+        <div class="section-header"><h2>03. Energy Recovery</h2><div></div></div>
+        <div class="grid-2">
+            <div class="card">
+                <h3>Thermodynamics</h3>
+                <div class="formula">$\Delta H_{combustion} = -297$ kJ/mol<br>$\Delta H_{reaction} = -197$ kJ/mol</div>
+                <p>The exothermic nature of the process allows for high-pressure steam generation, powering our internal systems.</p>
+            </div>
+            <div class="card">
+                <h3>Heat Exchanger Specs</h3>
+                <p>Cooling Load: 1.2M kJ/h</p>
+                <p>Waste Heat Boiler (WHB-101): SS-316L</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="selector">
+        <div class="section-header"><h2>04. Ringkasan Mesin & Efisiensi</h2><div></div></div>
+        <div class="selector-box">
+            <h3>Set Konfigurasi Mesin</h3>
+            <div style="margin: 30px 0;">
+                <button class="tier-btn btn-basic" onclick="setConf('basic')">Set Semua Basic (Murah)</button>
+                <button class="tier-btn btn-std" onclick="setConf('std')">Set Semua Standard (Rekomendasi)</button>
+                <button class="tier-btn btn-premium" onclick="setConf('premium')">Set Semua Premium (Optimal)</button>
+            </div>
+            <div class="grid-2">
+                <div class="card" style="margin:0; padding:20px;">
+                    <b>Burner Furnace:</b> <span id="f-stat">Premium</span><br>
+                    <small>Eff: <span id="f-eff">95%</span> | Yield: <span id="f-yield">96%</span></small>
+                </div>
+                <div class="card" style="margin:0; padding:20px;">
+                    <b>DCDA Converter:</b> <span id="r-stat">Premium</span><br>
+                    <small>Eff: <span id="r-eff">97%</span> | Yield: <span id="r-yield">98%</span></small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reaction">
+        <div class="section-header"><h2>05. Reaction Kinetics</h2><div></div></div>
+        <div class="card">
+                        <div class="formula">Rate: $r = k \cdot [SO_2] \cdot [O_2]^{0.5}$</div>
+            <p>Using Vanadium Pentoxide catalyst beds with inter-stage cooling to maintain optimal temperature (420°C - 600°C).</p>
+        </div>
+    </section>
+
+    <section id="equipment">
+        <div class="section-header"><h2>06. Equipment Specs</h2><div></div></div>
+        <div class="card">
+            <table>
+                <thead><tr><th>Unit ID</th><th>Equipment</th><th>Capacity</th><th>Material</th></tr></thead>
+                <tbody>
+                    <tr><td>M-101</td><td>Sulfur Melter</td><td>150 $m^3$</td><td>Carbon Steel (Brick-Lined)</td></tr>
+                    <tr><td>F-101</td><td>Sulfur Burner</td><td>70k kg/h</td><td>Refractory-Lined Steel</td></tr>
+                    <tr><td>R-201</td><td>Converter Bed</td><td>4 Stages</td><td>Stainless Steel 304L</td></tr>
+                    <tr><td>T-301</td><td>Absorber Tower</td><td>1000 MTPD</td><td>Acid-Brick Steel</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="utility">
+        <div class="section-header"><h2>07. Utilities</h2><div></div></div>
+        <div class="grid-2">
+            <div class="card"><canvas id="utilChart"></canvas></div>
+            <div class="card">
+                <h3>Plant Loads</h3>
+                <p>Electric Requirement: 1.8 MW</p>
+                <p>Cooling Water Flow: 1,200 $m^3/h$</p>
+                <p>Instrument Air: 250 $Nm^3/h$</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="economy">
+        <div class="section-header"><h2>08. Economic Analysis</h2><div></div></div>
+        <div class="card">
+            <canvas id="profitChart" height="120"></canvas>
+            <div class="grid-2">
+                <div style="text-align:center"><h3>ROI</h3><p id="roi-text" style="font-size:2rem; font-weight:900; color:var(--gold);">31.2%</p></div>
+                <div style="text-align:center"><h3>Payback</h3><p style="font-size:2rem; font-weight:900; color:var(--gold);">5.2 Years</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="safety">
+        <div class="section-header"><h2>09. SHE & Safety</h2><div></div></div>
+        <div class="card" style="border-left: 10px solid var(--maroon);">
+            <h3>Safety Instrumented System</h3>
+            <p>Level 3 SIL (Safety Integrity Level) sensors installed for pressure relief and emergency $SO_2$ scrubbing.</p>
+        </div>
+    </section>
+
+    <footer>
+        <h2 style="font-family:'Montserrat'; letter-spacing:10px;">AMORA VENTURES</h2>
+        <div class="meta">
+            <div>Class: <b>12 A</b></div>
+            <div>Team: <b>Aisha • Keysha • Jovita</b></div>
+            <div>Date: <b>Feb 28, 2026</b></div>
+        </div>
+        <p style="margin-top:50px; font-size:0.7rem; color:#aaa;">&copy; 2026 12 A Industrial. Academic Use Only.</p>
+    </footer>
+
+    <script>
+        // SIDE NAV DOTS LOGIC
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const dots = document.querySelectorAll('.dot');
+            let current = "";
+            sections.forEach(s => { if(pageYOffset >= s.offsetTop - 300) current = s.getAttribute('id'); });
+            dots.forEach(d => { d.classList.remove('active'); if(d.getAttribute('href').includes(current)) d.classList.add('active'); });
+        });
+
+        // AZZAM-STYLE CONFIG LOGIC
+        const confs = {
+            basic: { yield: 89.4, roi: 18.2, fe: 88, fy: 90, re: 85, ry: 88, t: 'Basic' },
+            std: { yield: 95.0, roi: 24.5, fe: 92, fy: 93, re: 95, ry: 96, t: 'Standard' },
+            premium: { yield: 99.4, roi: 31.2, fe: 95, fy: 96, re: 97, ry: 98, t: 'Premium' }
+        };
+
+        function setConf(c) {
+            const d = confs[c];
+            document.getElementById('yield-val').innerText = d.yield + '%';
+            document.getElementById('roi-val').innerText = d.roi + '%';
+            document.getElementById('roi-text').innerText = d.roi + '%';
+            document.getElementById('f-stat').innerText = d.t;
+            document.getElementById('r-stat').innerText = d.t;
+            document.getElementById('f-eff').innerText = d.fe + '%';
+            document.getElementById('f-yield').innerText = d.fy + '%';
+            document.getElementById('r-eff').innerText = d.re + '%';
+            document.getElementById('r-yield').innerText = d.ry + '%';
+        }
+
+        // CHARTS
+        new Chart(document.getElementById('utilChart'), {
+            type: 'doughnut',
+            data: { labels: ['Cooling Water', 'Electricity', 'Air'], datasets: [{ data: [60, 25, 15], backgroundColor: ['#800000', '#b8860b', '#333'] }] }
+        });
+
+        new Chart(document.getElementById('profitChart'), {
+            type: 'line',
+            data: { labels: ['Y0', 'Y2', 'Y4', 'Y6', 'Y8', 'Y10'], datasets: [{ label: 'Profit (Billion IDR)', data: [-1200, -800, -100, 600, 1300, 2100], borderColor: '#800000', fill: false }] }
+        });
+
+        setConf('premium'); // Initial state matches image
+    </script>
+</body>
+</html>
